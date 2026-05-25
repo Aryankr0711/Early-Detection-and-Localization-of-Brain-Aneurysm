@@ -1,0 +1,133 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.pydevproject
+.settings/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+.jupyter/
+
+# Machine Learning Models & Checkpoints (> 120 MB)
+*.ckpt
+*.pth
+*.pt
+*.pkl
+*.pickle
+checkpoint*/
+checkpoints/
+models/
+pretrained_models/
+
+# Model-related directories
+251013-prev6-1-ex-dav6w3-e25-w01-005-1-s128-256/
+nnunet-da3-sklr-ep800/
+nnunet-da6-sklr-w3-tv07/
+nnunet-vessel-grouping-da7/
+
+# Weights & Biases
+wandb/
+*.wandb
+
+# Logs
+logs/
+*.log
+inference_logs.txt
+*.txt
+
+# Output directories
+outputs/
+pipeline_outputs/
+nifti_outputs/
+results/
+
+# Data files
+sample_data/
+*.nii.gz
+*.nii
+*.dicom
+*.dcm
+data/
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# nnUNet specific
+nnUNet_preprocessed/
+nnUNet_raw/
+nnUNet_results/
+
+# Large intermediate files
+*.tar
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# JSON outputs
+nifiti_outputs/
+*.jsonl
+
+# pip packages cache
+pip_packages/
+
+# Hydra outputs
+.hydra/
+outputs/
+Solution Overview.docx
+Major_Draft KW.docx
+
+# Additional large directories
+public/
+napari/
+
+# Environment variable files
+.env.local
+.env.*.local
