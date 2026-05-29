@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSNA 2025 — Brain Aneurysm Detection & Localization System</title>
+  <meta name="description" content="1st Place Solution: AI-powered brain aneurysm detection and localization across 13 cerebral vessel locations. Clinical-grade radiology workstation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='none' stroke='%2300B4D8' stroke-width='2'/><circle cx='16' cy='16' r='4' fill='%2300B4D8'/></svg>">
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-brand">
+      RSNA 2025 · ANEURYSM AI
+    </div>
+    <div class="nav-center" style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 24px;">
+      <img src="assets/MIT_AOE_LOGO.png" alt="MIT" class="partner-logo" style="height: 32px;">
+      <img src="assets/SUPISTA_LOGO.png" alt="Supista" class="partner-logo" style="height: 32px;">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" data-nav="hero">Overview</a></li>
+      <li><a href="#pipeline" data-nav="pipeline">Pipeline</a></li>
+      <li><a href="#upload" data-nav="upload">Analysis</a></li>
+      <li><a href="#results" data-nav="results">Results</a></li>
+      <li><a href="#validation" data-nav="validation">Validation</a></li>
+    </ul>
+  </nav>
+
+  <div class="app-container">
+
+    <!-- ═══ SECTION 1: HERO ═══ -->
+    <section class="hero" id="hero">
+      <canvas class="hero-canvas" id="heroCanvas"></canvas>
+      <div class="hero-content">
+        <div class="hero-overline">RSNA 2025</div>
+        <h1 class="hero-title">
+          Brain Aneurysm<br>
+          Detection &<br>
+          Localization<br>
+          System
+        </h1>
+
+        <!-- Inline Showcase Images directly under the title -->
+        <div class="hero-images-inline">
+          <div class="hero-image-card">
+            <img src="assets/brain_aneurysm_diagram.png" alt="Brain Aneurysm Diagram" class="hero-showcase-img">
+            <div class="hero-image-caption">Circle of Willis Anatomy & Aneurysm Locations</div>
+          </div>
+          <div class="hero-image-card">
+            <img src="assets/aneurysm_mri_scan.png" alt="Aneurysm MRI Scan" class="hero-showcase-img">
+            <div class="hero-image-caption">High-resolution 3D MRI Aneurysm Localization</div>
+          </div>
+        </div>
+
+        <p class="hero-subtitle">
+          Precision AI for neurovascular screening.
+          Automated detection and anatomical localization of intracranial
+          aneurysms across 13 cerebral vessel territories.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value" data-count="0.947">0.947</span>
+            <span class="hero-stat-label">AUC-ROC</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">83.0%</span>
+            <span class="hero-stat-label">Sensitivity</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">&lt;40s</span>
+            <span class="hero-stat-label">Inference</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value">14</span>
+            <span class="hero-stat-label">Predictions</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('upload').scrollIntoView({behavior:'smooth'})">
+            Begin Analysis →
+          </button>
+          <button class="btn-secondary" onclick="document.getElementById('pipeline').scrollIntoView({behavior:'smooth'})">
+            View Pipeline
+          </button>
+        </div>
+        <div class="hero-logos">
+          <img src="assets/MIT_AOE_LOGO.png" alt="MIT Academy of Engineering" class="partner-logo" style="height: 24px;">
+          <img src="assets/SUPISTA_LOGO.png" alt="Supista" class="partner-logo" style="height: 24px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 2: PIPELINE ═══ -->
+    <section class="section" id="pipeline" style="padding-top: 0; padding-bottom: 0;">
+      <div class="pipeline-scroll-container">
+        <div class="pipeline-sticky-content">
+          <div class="section-label"><span class="accent">02</span> · Neural Pipeline Architecture</div>
+          <div class="pipeline-grid" id="pipelineGrid">
+            <div class="pipeline-stage" data-stage="1">
+              <div class="pipeline-stage-number">Stage 01</div>
+              <div class="pipeline-stage-title">Sparse Search</div>
+              <div class="pipeline-stage-desc">
+                Coarse 3D nnU-Net scans the full brain volume at reduced resolution.
+                DBSCAN clustering identifies the vessel centroid for adaptive ROI cropping.
+              </div>
+              <div class="pipeline-stage-specs">
+                <div class="pipeline-spec">3D fullres nnU-Net</div>
+                <div class="pipeline-spec">Folds: 0, 1, 2</div>
+                <div class="pipeline-spec">DBSCAN centroid extraction</div>
+                <div class="pipeline-spec">ROI crop: 140×140×140 mm</div>
+                <div class="pipeline-spec">~8 seconds</div>
+              </div>
+            </div>
+            <div class="pipeline-stage" data-stage="2">
+              <div class="pipeline-stage-number">Stage 02</div>
+              <div class="pipeline-stage-title">Dense Segmentation</div>
+              <div class="pipeline-stage-desc">
+                Dual nnU-Net ensemble performs high-resolution inference over the cropped ROI.
+                SkeletonRecall and FocalTversky losses produce complementary segmentations.
+              </div>
+              <div class="pipeline-stage-specs">
+                <div class="pipeline-spec">Model 2A: SkeletonRecall loss</div>
+                <div class="pipeline-spec">Model 2B: FocalTversky loss</div>
+                <div class="pipeline-spec">Ensemble voting (13ch)</div>
+                <div class="pipeline-spec">BBox refinement</div>
+                <div class="pipeline-spec">~15 seconds</div>
+              </div>
+            </div>
+            <div class="pipeline-stage" data-stage="3">
+              <div class="pipeline-stage-number">Stage 03</div>
+              <div class="pipeline-stage-title">Classification</div>
+              <div class="pipeline-stage-desc">
+                Transformer classifier with region-masked pooling generates per-vessel
+                probabilities. 5-fold ensemble with optional TTA for robust predictions.
+              </div>
+              <div class="pipeline-stage-specs">
+                <div class="pipeline-spec">RegionMaskedPooling3D</div>
+                <div class="pipeline-spec">nnU-Net pretrained backbone</div>
+                <div class="pipeline-spec">13 location heads + AP head</div>
+                <div class="pipeline-spec">5-fold × TTA ensemble</div>
+                <div class="pipeline-spec">~12 seconds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:48px;"><span class="accent">13</span> · Detection Targets</div>
+      <div class="vessel-grid">
+        <div class="vessel-grid-item"><span class="abbr">L-IC Infra</span>Left Infraclinoid ICA</div>
+        <div class="vessel-grid-item"><span class="abbr">R-IC Infra</span>Right Infraclinoid ICA</div>
+        <div class="vessel-grid-item"><span class="abbr">L-IC Supra</span>Left Supraclinoid ICA</div>
+        <div class="vessel-grid-item"><span class="abbr">R-IC Supra</span>Right Supraclinoid ICA</div>
+        <div class="vessel-grid-item"><span class="abbr">L-MCA</span>Left Middle Cerebral</div>
+        <div class="vessel-grid-item"><span class="abbr">R-MCA</span>Right Middle Cerebral</div>
+        <div class="vessel-grid-item"><span class="abbr">AComA</span>Anterior Communicating</div>
+        <div class="vessel-grid-item"><span class="abbr">L-ACA</span>Left Anterior Cerebral</div>
+        <div class="vessel-grid-item"><span class="abbr">R-ACA</span>Right Anterior Cerebral</div>
+        <div class="vessel-grid-item"><span class="abbr">L-PComA</span>Left Post. Communicating</div>
+        <div class="vessel-grid-item"><span class="abbr">R-PComA</span>Right Post. Communicating</div>
+        <div class="vessel-grid-item"><span class="abbr">Basilar</span>Basilar Tip</div>
+        <div class="vessel-grid-item"><span class="abbr">Other Post</span>Other Posterior Circ.</div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 3: UPLOAD ═══ -->
+    <section class="section" id="upload">
+      <div class="section-label"><span class="accent">03</span> · DICOM Analysis</div>
+
+      <div class="upload-zone" id="uploadZone">
+        <div class="upload-icon">
+          <svg viewBox="0 0 40 40"><path d="M20 6v20M12 14l8-8 8 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 28v4a2 2 0 002 2h24a2 2 0 002-2v-4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="upload-title" id="uploadTitle">Drop DICOM Series</div>
+        <div class="upload-subtitle" id="uploadSubtitle">or click to browse · supports .dcm directories</div>
+      </div>
+
+      <div class="upload-actions">
+        <button class="btn-secondary" id="btnBrowse">Select Folder</button>
+        <button class="btn-primary" id="btnAnalyze" style="display: none;">Start Analysis</button>
+      </div>
+
+      <div class="processing-container" id="processingContainer">
+        <div class="processing-progress">
+          <div class="processing-progress-bar" id="progressBar"></div>
+        </div>
+        <div class="processing-log" id="processingLog"></div>
+      </div>
+    </section>
+
+    <!-- ═══ SECTION 4: RESULTS DASHBOARD ═══ -->
+    <section class="section section-full results-section" id="results">
+      <div class="section-label"><span class="accent">04</span> · Diagnostic Results</div>
+
+      <!-- Patient Header -->
+      <div class="patient-header" id="patientHeader">
+        <div class="patient-field">
+          <span class="patient-field-label">Patient ID</span>
+          <span class="patient-field-value" id="patientId">—</span>
+        </div>
+        <div class="patient-field">
+          <span class="patient-field-label">Age / Sex</span>
+          <span class="patient-field-value" id="patientAge">—</span>
+        </div>
+        <div class="patient-field">
+          <span class="patient-field-label">Modality</span>
+          <span class="patient-field-value" id="patientModality">—</span>
+        </div>
+        <div class="patient-field">
+          <span class="patient-field-label">Inference Time</span>
+          <span class="patient-field-value" id="inferenceTime">—</span>
+        </div>
+        <div class="patient-field">
+          <span class="patient-field-label">Status</span>
+          <span class="patient-field-value status-ok" id="inferenceStatus">—</span>
+        </div>
+      </div>
+
+      <!-- Primary + Secondary Grid -->
+      <div class="dashboard-grid">
+        <!-- Primary: AP Gauge + Vessel Map + DICOM Viewer -->
+        <div class="primary-region">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4);">
+            <div class="ap-gauge-panel" id="apGaugePanel">
+              <div class="ap-gauge-header">Aneurysm Probability</div>
+              <div class="ap-gauge-value" id="apValue" style="color: var(--text-primary);">—</div>
+              <div class="ap-gauge-bar">
+                <div class="ap-gauge-bar-fill" id="apBar" style="width:0%;"></div>
+              </div>
+              <div class="ap-risk-label" id="apRisk">—</div>
+            </div>
+
+            <div class="vessel-map-panel">
+              <div class="vessel-map-header">Circle of Willis — Vessel Risk Map</div>
+              <div class="vessel-svg-container" id="vesselMapContainer">
+                <!-- SVG injected by vessel-map.js -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Probability Table Panel -->
+          <div class="prob-table-panel" style="margin-top: var(--sp-4);">
+            <div class="prob-table-header">Vessel Probability Analysis</div>
+            <table class="prob-table">
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Probability</th>
+                  <th>Confidence</th>
+                  <th>Risk</th>
+                </tr>
+              </thead>
+              <tbody id="probTableBody">
+                <!-- Populated by results.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tertiary: Telemetry -->
+      <div class="telemetry-grid" id="telemetryGrid">
+        <div class="telemetry-card">
+          <div class="telemetry-card-title">Scan Metadata</div>
+          <div class="telemetry-row"><span class="label">Slices</span><span class="value" id="tSlices">—</span></div>
+          <div class="telemetry-row"><span class="label">Spacing</span><span class="value" id="tSpacing">—</span></div>
+          <div class="telemetry-row"><span class="label">Dimensions</span><span class="value" id="tDims">—</span></div>
+          <div class="telemetry-row"><span class="label">Orientation</span><span class="value" id="tOrient">—</span></div>
+          <div class="telemetry-row"><span class="label">Modality</span><span class="value" id="tModality">—</span></div>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-card-title">Inference Timing</div>
+          <div class="telemetry-row"><span class="label">Total</span><span class="value" id="tTotal">—</span></div>
+          <div class="telemetry-row"><span class="label">Stage 1</span><span class="value" id="tS1">—</span></div>
+          <div class="telemetry-row"><span class="label">Stage 2</span><span class="value" id="tS2">—</span></div>
+          <div class="telemetry-row"><span class="label">Stage 3</span><span class="value" id="tS3">—</span></div>
+          <div class="telemetry-row"><span class="label">Queue</span><span class="value" id="tQueue">—</span></div>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-card-title">Hardware</div>
+          <div class="telemetry-row"><span class="label">GPU</span><span class="value" id="tGPU">—</span></div>
+          <div class="telemetry-row"><span class="label">VRAM</span><span class="value" id="tVRAM">—</span></div>
+          <div class="telemetry-row"><span class="label">Utilization</span><span class="value" id="tUtil">—</span></div>
+          <div class="telemetry-row"><span class="label">Temperature</span><span class="value" id="tTemp">—</span></div>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-card-title">Model Configuration</div>
+          <div class="telemetry-row"><span class="label">Version</span><span class="value" id="tVersion">—</span></div>
+          <div class="telemetry-row"><span class="label">Classifier</span><span class="value" id="tClassifier">—</span></div>
+          <div class="telemetry-row"><span class="label">Seg Folds</span><span class="value" id="tSegFolds">—</span></div>
+          <div class="telemetry-row"><span class="label">TTA</span><span class="value" id="tTTA">—</span></div>
+          <div class="telemetry-row"><span class="label">Checkpoint</span><span class="value" id="tCkpt">—</span></div>
+        </div>
+      </div>
+
+      <!-- Inference Log -->
+      <div class="inference-log-panel">
+        <div class="inference-log-title">Inference Log</div>
+        <div class="inference-log-entries" id="inferenceLog">
+          <!-- Populated by results.js -->
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ═══ SECTION 6: CLINICAL VALIDATION ═══ -->
+    <section class="section" id="validation">
+      <div class="section-label"><span class="accent">06</span> · Clinical Validation</div>
+      <p class="validation-subtitle">Research Evaluation Protocol — Validation Cohort (N=100)</p>
+
+      <div class="metrics-grid">
+        <div class="metric-card reveal">
+          <div class="metric-card-label">AUC-ROC</div>
+          <div class="metric-card-value" data-target="0.947" id="metricAUC">0</div>
+          <div class="metric-card-ci">95% CI: 0.91–0.98</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-card-label">Sensitivity (Recall)</div>
+          <div class="metric-card-value" data-target="83.0" data-suffix="%" id="metricSens">0</div>
+          <div class="metric-card-ci">95% CI: 72.1–91.2%</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-card-label">Specificity</div>
+          <div class="metric-card-value" data-target="94.3" data-suffix="%" id="metricSpec">0</div>
+          <div class="metric-card-ci">95% CI: 84.3–98.8%</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-card-label">Precision (PPV)</div>
+          <div class="metric-card-value" data-target="92.9" data-suffix="%" id="metricPrec">0</div>
+          <div class="metric-card-ci">95% CI: 82.7–98.0%</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-card-label">F1 Score</div>
+          <div class="metric-card-value" data-target="0.876" id="metricF1">0</div>
+          <div class="metric-card-ci"></div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-card-label">Accuracy</div>
+          <div class="metric-card-value" data-target="89.0" data-suffix="%" id="metricAcc">0</div>
+          <div class="metric-card-ci"></div>
+        </div>
+      </div>
+
+      <div class="section-label"><span class="accent">—</span> · Confusion Matrices</div>
+      <div class="cm-grid">
+        <div class="cm-container reveal">
+          <img src="assets/confusion_matrix_presence_2x2.png" alt="Binary Classification — Aneurysm Presence">
+          <div class="cm-caption">
+            <strong>Figure 1:</strong> Binary Classification — Aneurysm Presence (N=100)<br>
+            TP: 39 · FN: 8 · TN: 50 · FP: 3
+          </div>
+        </div>
+        <div class="cm-container reveal">
+          <img src="assets/confusion_matrix_location_13x13.png" alt="Location Identification">
+          <div class="cm-caption">
+            <strong>Figure 2:</strong> Location Identification — 13×13 Confusion Matrix (N=47 positive)<br>
+            Row = Ground Truth Location · Col = Predicted Location (argmax)
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label"><span class="accent">—</span> · Validation Cohort Demographics</div>
+      <div class="demographics-panel reveal">
+        <table class="demographics-table">
+          <tr><td>Total Patients</td><td>100</td></tr>
+          <tr><td>Aneurysm Positive</td><td>47 (47.0%)</td></tr>
+          <tr><td>Modality Distribution</td><td>CTA: 42% · MRA: 35% · MRI T2: 15% · MRI T1post: 8%</td></tr>
+          <tr><td>Sex Distribution</td><td>Female: 63% · Male: 37%</td></tr>
+          <tr><td>Age Range</td><td>19–89 years (median: 60)</td></tr>
+          <tr><td>Vessel Location Targets</td><td>13 anatomical territories</td></tr>
+          <tr><td>Prediction Outputs</td><td>14 (13 locations + aneurysm present)</td></tr>
+          <tr><td>Evaluation Metric</td><td>Weighted multi-label AUC (Kaggle protocol)</td></tr>
+          <tr><td>Preprocessing</td><td>DICOM → NIfTI → RAS orientation standardization</td></tr>
+          <tr><td>Inference Hardware</td><td>NVIDIA GPU, ≤8 GB VRAM, CUDA 12.x</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+      <div class="footer-text">
+        RSNA 2025 Brain Aneurysm Detection System · MIT Academy of Engineering · Supista · 2026
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Tooltip element -->
+  <div class="tooltip" id="tooltip"></div>
+
+  <!-- Scripts -->
+  <script src="js/vessel-map.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/pipeline.js"></script>
+  <script src="js/upload.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/dicom-viewer.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
